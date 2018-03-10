@@ -1,0 +1,11 @@
+C:\Users\sam\source\repos\SteelThread\SteelThread\bin\Debug\netcoreapp2.0\SteelThread.deps.json
+C:\Users\sam\source\repos\SteelThread\SteelThread\bin\Debug\netcoreapp2.0\SteelThread.runtimeconfig.json
+C:\Users\sam\source\repos\SteelThread\SteelThread\bin\Debug\netcoreapp2.0\SteelThread.runtimeconfig.dev.json
+C:\Users\sam\source\repos\SteelThread\SteelThread\bin\Debug\netcoreapp2.0\SteelThread.dll
+C:\Users\sam\source\repos\SteelThread\SteelThread\bin\Debug\netcoreapp2.0\SteelThread.pdb
+C:\Users\sam\source\repos\SteelThread\SteelThread\obj\Debug\netcoreapp2.0\SteelThread.csproj.CoreCompileInputs.cache
+C:\Users\sam\source\repos\SteelThread\SteelThread\obj\Debug\netcoreapp2.0\SteelThread.AssemblyInfoInputs.cache
+C:\Users\sam\source\repos\SteelThread\SteelThread\obj\Debug\netcoreapp2.0\SteelThread.AssemblyInfo.cs
+C:\Users\sam\source\repos\SteelThread\SteelThread\obj\Debug\netcoreapp2.0\SteelThread.dll
+C:\Users\sam\source\repos\SteelThread\SteelThread\obj\Debug\netcoreapp2.0\SteelThread.pdb
+C:\Users\sam\source\repos\SteelThread\SteelThread\obj\Debug\netcoreapp2.0\SteelThread.csprojResolveAssemblyReference.cache

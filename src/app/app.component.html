@@ -1,0 +1,48 @@
+<h1>This is my data:</h1>
+
+<ul>
+  <li *ngFor="let value of apiValues">{{value}}</li>
+</ul>
+
+
+
+<h1>Data Input:</h1>
+
+<script>
+  var HttpGetController = function($scope, $http) {
+    $scope.loading = true;
+    $http.post('/api/values', { foo: 'bar' }).success(function (response) {
+      $scope.response = response;
+      $scope.loading = false;
+    });
+  }; 
+</script>
+
+
+<div ng-app="app" ng-controller="HttpGetController">
+  <p>Username: <input type="text" name="UserName" ng-model="UserName" required /></p>
+  <button ng-click="HttpGetController()">Submit</button>
+  <hr />
+</div>
+
+
+
+
+  <!--
+  <p>
+    Create a new user: <input type="text" name="UserName" [(ngModel)]="UserName">
+    <button (click)="PostData(UserName)">Save</button>
+  </p>
+
+
+
+
+  <div>
+
+    Name : <input ng-name="UserName" /><br /><br />
+    Password : <input ng-name="UserPassword" /><br /><br />
+    <input type="button" value="Send" ng-click="PostData(UserName, UserPassword)" /> <br /><br />
+
+  </div>
+
+        -->
