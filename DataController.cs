@@ -52,14 +52,14 @@ namespace SteelThread
       var transaction = connection.BeginTransaction();
       SqlDataReader reader = new SqlCommand("select UserName from Users", connection, transaction).ExecuteReader();
       //transaction.Commit();
-      string[] returnValue = new string[3];
-
+      string[] returnValue = new string[10];
+      int i = 0;
 
       if (reader.HasRows)
       {
+       
         while (reader.Read())
         {
-          int i = 0;
           returnValue[i] = reader[0].ToString();
           i++;
         }
@@ -73,16 +73,13 @@ namespace SteelThread
 
 
     [HttpPost]
-
-    public ContentResult PostDataResponse()
-    {
-      return Content("First name: " + Request.Form["UserName"]);
-    }
-
-    /*
-    public void Post([FromBody]string UserName, string UserPassword)
+   
+    public void Post([FromBody]string Username)
     {
       //Connect to the data source, read the data, then return the first 3 values
+
+
+
 
       var connection = new SqlConnection();
       connection.ConnectionString =
@@ -90,14 +87,15 @@ namespace SteelThread
       connection.Open();
       var transaction = connection.BeginTransaction();
 
-      SqlDataReader reader = new SqlCommand("Insert Into Users(UserName, UserPassword) Values ('Value1', 'value2')" , connection, transaction).ExecuteReader();
-     
+      string sql = "Insert Into Users(UserName, UserPassword) Values ('Value1', 'value2')";
+      SqlCommand cmd = new SqlCommand(sql, connection);
+      cmd.ExecuteNonQuery();
+
       transaction.Commit();
       connection.Close();
       
-
     }
-    */
+    
   }
 
 }

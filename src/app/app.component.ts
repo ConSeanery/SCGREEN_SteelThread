@@ -1,53 +1,50 @@
 import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
-//import { PostDataService } from './post-data.service';
-import { Observable } from 'rxjs/Rx';
+import { Http, RequestOptions, Headers } from '@angular/http'
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { PostDataService } from './post-data.service';
+import { catchError, map, tap } from 'rxjs/operators';
+import { Username } from './Username';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
+
 })
 
-export class AppComponent implements OnInit {
 
+export class AppComponent implements OnInit {
+ 
+  username: Username[];
   public _url = '/api/values';
 
-  constructor(private _httpService: Http) { }///, private _postDataService: PostDataService) { }
 
+  constructor(private http: Http, private postDataService: PostDataService) { }
+ 
   apiValues: string[] = [];
 
   ngOnInit() {
-    this._httpService.get('/api/values').subscribe(values => {
+    this.http.get('/api/values').subscribe(values => {
       this.apiValues = values.json() as string[];
     });
   }
 
 
-  PostData(post: { UserName: string; UserPassword: string}): Observable<any> {
-    return this._httpService.post('localhost:54980', post)
-      .map(res => res.json())
-  }
 
 
-  
-  //PROBLEM HERE. WHEN THIS CODE RUNS, ALL GOES TO $#@!
-  /*
-    createFood(name) {
-    let food = {name: name};
-    this._postDataService.createFood(food).subscribe(
-       data => {
-         // refresh the list
-         return true;
-       },
-       error => {
-         console.error("Error saving data!");
-         return Observable.throw(error);
-       }
-    );
+
+
+  add(name: string): void {
+    name = name.trim();
+    if (!name) { return; }
+    this.postDataService.addUser({ name } as Username)
+      .subscribe(username => {
+        this.username.push(username);
+      });
   }
+
   
-  */
+
   
 
 }

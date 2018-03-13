@@ -11,8 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Steel-Thread-App\" />
-    <Folder Include="wwwroot\" />
+    <Folder Include="Steel-Thread-App\models\" />
   </ItemGroup>
 
   <ItemGroup>

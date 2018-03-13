@@ -1,9 +1,16 @@
-import { BrowserModule } from '@angular/platform-browser';
+
 import { NgModule } from '@angular/core';
-import { AppComponent } from './app.component';
+import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
+//import { AppRoutingModule } from './app-routing.module';
+
+import { AppComponent } from './app.component';
+
 import { HttpModule } from '@angular/http';
 import { PostDataService } from './post-data.service';
+
 
 @NgModule({
   declarations: [
@@ -12,7 +19,9 @@ import { PostDataService } from './post-data.service';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpClientModule,
+    HttpModule,
+
   ],
   providers: [PostDataService],
   bootstrap: [AppComponent]

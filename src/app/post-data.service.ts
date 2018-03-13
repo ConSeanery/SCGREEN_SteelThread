@@ -1,27 +1,54 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from "@angular/http";
-import { Observable } from "rxjs/Rx";
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
+import { Username } from './Username';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError, map, tap } from 'rxjs/operators';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' })
+};
 
 @Injectable()
 export class PostDataService {
- 
 
-  constructor(private http: Http) {}
+  private usernamesUrl = 'api/values';  // URL to web api
+  
 
-  // Uses http.get() to load a single JSON file
-  getFoods() {
-    return this.http.get('/app/food.json').map((res: Response) => res.json());
+  constructor(private http: HttpClient) { }
+
+  /*
+  getUsername(): Observable<Username[]> {
+    // Todo: send the message _after_ fetching the heroes
+    return of(Username);
+  }
+  */
+
+
+  /** POST: add a new hero to the server */
+  addUser(username: Username): Observable<Username> {
+    return this.http.post<Username>('/api/values/', username, httpOptions).pipe(
+      tap((username: Username) => this.log(`added hero w/ id=${username.id}`)),
+      catchError(this.handleError<Username>('addHero'))
+    );
   }
 
 
-  // Uses Observable.forkJoin() to run multiple concurrent http.get() requests.
-  // The entire operation will result in an error state if any single request fails.
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
 
-  createFood(food) {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
-    let body = JSON.stringify(food);
-    return this.http.post('/api/values/', body, options).map((res: Response) => res.json());
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
+
+      // TODO: better job of transforming error for user consumption
+      this.log(`${operation} failed: ${error.message}`);
+
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
   }
 
+  private log(message: string) {
+    
+  }
 }
